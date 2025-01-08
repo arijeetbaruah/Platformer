@@ -12,9 +12,13 @@ namespace PG.Player
         private InputService IS => ServiceManager.Get<InputService>();
      
         [SerializeField] private float movementSpeed;
+        [SerializeField] private float jumpPower = 10;
+        [SerializeField] private float coyoteTime;
         
         private Rigidbody2D _rigidbody;
         private Vector2 _movement;
+
+        private float _coyoteTimeCounter;
         
         private bool IsGrounded => Physics2D.Raycast(transform.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
 
@@ -26,6 +30,18 @@ namespace PG.Player
         private void Update()
         {
             transform.Translate(_movement * movementSpeed * Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            if (IsGrounded)
+            {
+                _coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                _coyoteTimeCounter -= Time.fixedDeltaTime;
+            }
         }
 
         private void OnEnable()
@@ -58,7 +74,11 @@ namespace PG.Player
 
         private void OnJump(InputAction.CallbackContext obj)
         {
-            _rigidbody.linearVelocityY = IsGrounded ? _rigidbody.linearVelocityY * 0.5f : 10;
+            if (_coyoteTimeCounter > 0)
+            {
+                _rigidbody.linearVelocityY = jumpPower;
+                _coyoteTimeCounter = 0;
+            }
         }
     }
 }
