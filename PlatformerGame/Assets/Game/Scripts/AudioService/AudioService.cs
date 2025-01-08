@@ -10,6 +10,8 @@ namespace PG.Audio
     {
         private List<EventInstance> eventInstances = new List<EventInstance>();
 
+        private EventInstance _musicInstance;
+        
         ~AudioService()
         {
             foreach (var eventInstance in eventInstances)
@@ -32,6 +34,12 @@ namespace PG.Audio
         public void PlayOnce(EventReference audioReference, Vector3 worldPosition)
         {
             RuntimeManager.PlayOneShot(audioReference, worldPosition);
+        }
+
+        public void PlayMusic(EventReference audioReference)
+        {
+            _musicInstance = CreateInstance(audioReference);
+            _musicInstance.start();
         }
 
         public EventInstance CreateInstance(EventReference audioReference)
