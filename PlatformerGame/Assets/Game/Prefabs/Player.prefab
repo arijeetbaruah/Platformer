@@ -178,3 +178,4 @@ MonoBehaviour:
   movementSpeed: 10
   jumpPower: 10
   coyoteTime: 0.2
+  jumpBufferTime: 0.2
