@@ -71,3 +71,21 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /PlatformerGame/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /PlatformerGame/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Never ignore DLLs in the FMOD subfolder.
+!/PlatformerGame/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!/PlatformerGame/[Aa]ssets/Gizmos/FMOD/*
+!/PlatformerGame/[Aa]ssets/Editor Default Resources/FMOD/*
+
+# Ignore the Cache folder since it is updated locally.
+/PlatformerGame/[Aa]ssets/Plugins/FMOD/Cache/*
+
+# Ignore bank files in the StreamingAssets folder.
+/PlatformerGame/[Aa]ssets/StreamingAssets/**/*.bank
+/PlatformerGame/[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+/PlatformerGamefmod_editor.log
