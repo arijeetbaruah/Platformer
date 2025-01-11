@@ -25,6 +25,7 @@ namespace PG.Player
         [SerializeField] private EventReference walkingEvent;
         [SerializeField] private EventReference jumpStartEvent;
         [SerializeField] private EventReference jumpLandEvent;
+        [SerializeField] private EventReference attack1Event;
         
         [SerializeField] private PlayerAnimationController playerAnimationController;
         
@@ -161,6 +162,8 @@ namespace PG.Player
             if (!IsGrounded || _isAttacking) return;
 
             _rigidbody.linearVelocityX = 0;
+            _movement.x = 0;
+
             _isAttacking = true;
             playerAnimationController.Attack(() =>
             {
@@ -185,6 +188,11 @@ namespace PG.Player
             if (_isAttacking) return;
 
             _jumpBufferCounter = jumpBufferTime;
+        }
+
+        public void PlayAttack1Audio()
+        {
+            ServiceManager.Get<AudioService>().PlayOnce(attack1Event);
         }
     }
 }

@@ -363,6 +363,14 @@ MonoBehaviour:
       Data3: -300554347
       Data4: 580358673
     Path: event:/SFX/Jump_Land
+  attack1Event:
+    Guid:
+      Data1: -1317267845
+      Data2: 1298963520
+      Data3: 1420544677
+      Data4: 1187220756
+    Path: event:/SFX/SwordSwing
+  playerAnimationController: {fileID: 8142778516203800775}
 --- !u!114 &8142778516203800775
 MonoBehaviour:
   m_ObjectHideFlags: 0
