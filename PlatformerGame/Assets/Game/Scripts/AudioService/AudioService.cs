@@ -42,6 +42,18 @@ namespace PG.Audio
             _musicInstance.start();
         }
 
+        public void StopMusic()
+        {
+            _musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+
+        public void StopAndReleaseMusic()
+        {
+            _musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _musicInstance.release();
+            eventInstances.Remove(_musicInstance);
+        }
+
         public EventInstance CreateInstance(EventReference audioReference)
         {
             EventInstance instance = RuntimeManager.CreateInstance(audioReference);

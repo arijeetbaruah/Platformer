@@ -8,15 +8,23 @@ namespace PG.Service
     {
         public static ServiceManager Instance;
 
-        private Dictionary<Type, IService> services;
+        private Dictionary<Type, IService> services = new();
         
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(this);
+                //DontDestroyOnLoad(this);
                 services = new();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
             }
         }
 
