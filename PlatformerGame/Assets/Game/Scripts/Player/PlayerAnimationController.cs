@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using PG.Player;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace PG
         public readonly int WalkAnimation = Animator.StringToHash("Walk");
         public readonly int JumpAnimation = Animator.StringToHash("Jump");
         public readonly int FallAnimation = Animator.StringToHash("Fall");
+        public readonly int Attack1Animation = Animator.StringToHash("Attack1");
         
         [SerializeField] private Animator animator;
         
@@ -24,6 +26,8 @@ namespace PG
 
         private void Update()
         {
+            if (playerController.IsAttacking) return;
+            
             if (playerController.IsGrounded)
             {
                 if (rigidBody2D.linearVelocityX == 0)
@@ -46,7 +50,12 @@ namespace PG
                     animator.Play(FallAnimation);
                 }
             }
+        }
 
+        public void Attack(Action callback = null)
+        {
+            animator.Play(Attack1Animation);
+            DOVirtual.DelayedCall(animator.GetCurrentAnimatorClipInfo(0).Length, () => callback?.Invoke());
         }
     }
 }

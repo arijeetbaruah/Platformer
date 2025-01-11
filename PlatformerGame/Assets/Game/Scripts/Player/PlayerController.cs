@@ -26,6 +26,8 @@ namespace PG.Player
         [SerializeField] private EventReference jumpStartEvent;
         [SerializeField] private EventReference jumpLandEvent;
         
+        [SerializeField] private PlayerAnimationController playerAnimationController;
+        
         private Rigidbody2D _rigidbody;
         private Vector2 _movement;
 
@@ -33,13 +35,17 @@ namespace PG.Player
         private float _jumpBufferCounter;
         private bool _isGrounded = true;
         private bool _isWalking = false;
+        private bool _isAttacking = false;
         private EventInstance _walkingInstance;
 
         public bool IsGrounded => _isGrounded;
+        public bool IsAttacking => _isAttacking;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            TryGetComponent(out playerAnimationController);
+            
             _walkingInstance = ServiceManager.Get<AudioService>().CreateInstance(walkingEvent);
             
             ServiceManager.Get<AudioService>().StopAndReleaseMusic();
@@ -130,6 +136,8 @@ namespace PG.Player
             IS.Player.Move.performed += OnMoveStart;
             IS.Player.Move.canceled += OnMoveEnd;
 
+            IS.Player.Attack.performed += OnAttack;
+
             IS.Player.Jump.performed += OnJump;
         }
 
@@ -140,12 +148,30 @@ namespace PG.Player
                 IS.Player.Move.performed -= OnMoveStart;
                 IS.Player.Move.canceled -= OnMoveEnd;
 
+                IS.Player.Attack.performed -= OnAttack;
+
+                IS.Player.Jump.performed -= OnJump;
+
                 IS.Player.Disable();
             }
         }
 
+        private void OnAttack(InputAction.CallbackContext obj)
+        {
+            if (!IsGrounded || _isAttacking) return;
+
+            _rigidbody.linearVelocityX = 0;
+            _isAttacking = true;
+            playerAnimationController.Attack(() =>
+            {
+                _isAttacking = false;
+            });
+        }
+
         private void OnMoveStart(InputAction.CallbackContext obj)
         {
+            if (_isAttacking) return;
+
             _movement.x = obj.ReadValue<Vector2>().x;
         }
 
@@ -156,6 +182,8 @@ namespace PG.Player
 
         private void OnJump(InputAction.CallbackContext obj)
         {
+            if (_isAttacking) return;
+
             _jumpBufferCounter = jumpBufferTime;
         }
     }
