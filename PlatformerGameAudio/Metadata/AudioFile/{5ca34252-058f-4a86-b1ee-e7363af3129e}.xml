@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5ca34252-058f-4a86-b1ee-e7363af3129e}">
+		<property name="assetPath">
+			<value>Ambiance/365873__jandre160108__grassy-field-ambience.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>211.80250000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1e2c1ada-94e6-4be3-8832-9d6b22150cb0}</destination>
+		</relationship>
+	</object>
+</objects>

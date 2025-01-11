@@ -2,6 +2,7 @@ using System;
 using FMOD.Studio;
 using FMODUnity;
 using PG.Audio;
+using PG.Framework;
 using PG.Input;
 using PG.Service;
 using Sirenix.OdinInspector;
@@ -105,6 +106,7 @@ namespace PG.Player
                 var platformType = hit.transform.GetComponent<PG.Framework.Platform>().platformType;
                 _coyoteTimeCounter = coyoteTime;
                 _walkingInstance.setParameterByName("PlatformType", (float)platformType);
+                ServiceManager.Get<GameService>().Manager.SetPlatformType(platformType);
             }
             else
             {
