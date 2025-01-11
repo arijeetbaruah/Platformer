@@ -1,13 +1,26 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PG
 {
     public class Hitbox : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        private List<GameObject> hits = new();
+        [SerializeField] private GameObject owner;
+
+        private void OnEnable()
         {
-            Debug.Log($"Hitbox entered: {other.gameObject.name}");
+            hits.Clear();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+       {
+           if (hits.Contains(other.gameObject) || other.gameObject == owner)
+               return;
+           
+           hits.Add(other.gameObject);
+           Debug.Log($"Hitbox entered: {other.gameObject.name}");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PG.Framework
         
         private EventInstance ambianceEventInstance;
         
-        public PlatformType CurrentPlatformType { get; private set; }
+        public Ambience CurrentAmbience { get; private set; }
 
         private void Start()
         {
@@ -30,10 +30,10 @@ namespace PG.Framework
             ambianceEventInstance.release();
         }
 
-        public void SetPlatformType(PlatformType platformType)
+        public void SetAmbience(Ambience ambience)
         {
-            CurrentPlatformType = platformType;
-            ambianceEventInstance.setParameterByName("PlatformType", (int)CurrentPlatformType);
+            CurrentAmbience = ambience;
+            ambianceEventInstance.setParameterByName("Ambience", (int)ambience);
         }
     }
 }

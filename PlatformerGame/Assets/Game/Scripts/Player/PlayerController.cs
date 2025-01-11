@@ -106,7 +106,6 @@ namespace PG.Player
                 var platformType = hit.transform.GetComponent<PG.Framework.Platform>().platformType;
                 _coyoteTimeCounter = coyoteTime;
                 _walkingInstance.setParameterByName("PlatformType", (float)platformType);
-                ServiceManager.Get<GameService>().Manager.SetPlatformType(platformType);
             }
             else
             {
