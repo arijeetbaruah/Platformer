@@ -7,7 +7,6 @@ using PG.Service;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace PG.Player
@@ -80,7 +79,8 @@ namespace PG.Player
         private void FixedUpdate()
         {
             var oldState = _isGrounded;
-            _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
+            _isGrounded = hit.collider != null;
             if (oldState != _isGrounded)
             {
                 if (IsGrounded)
@@ -95,7 +95,9 @@ namespace PG.Player
             
             if (IsGrounded)
             {
+                var platformType = hit.transform.GetComponent<PG.Framework.Platform>().platformType;
                 _coyoteTimeCounter = coyoteTime;
+                _walkingInstance.setParameterByName("PlatformType", (float)platformType);
             }
             else
             {
