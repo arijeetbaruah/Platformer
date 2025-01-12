@@ -41,10 +41,11 @@ namespace PG.UI.MainMenu
         private IEnumerator Start()
         {
             yield return Addressables.LoadSceneAsync(additivieAsset, LoadSceneMode.Additive);
+
+            var audioService = new AudioService();
+            ServiceManager.Add(audioService);
             
-            ServiceManager.Add(new AudioService());
-            
-            ServiceManager.Get<AudioService>().PlayMusic(_backgroundMusic);
+            audioService.PlayMusic(_backgroundMusic);
         }
 
         public void NewGame()

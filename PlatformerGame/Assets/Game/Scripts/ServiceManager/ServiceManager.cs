@@ -30,7 +30,7 @@ namespace PG.Service
 
         public static T Get<T>() where T : class, IService
         {
-            if (Instance.services.TryGetValue(typeof(T), out IService service))
+            if (Instance != null && Instance.services.TryGetValue(typeof(T), out IService service))
             {
                 return (T)service;
             }
@@ -40,11 +40,25 @@ namespace PG.Service
 
         public static void Add<T>(T service) where T : class, IService
         {
+            if (Instance == null)
+            {
+                Debug.Log("ServiceManager: Instance is null");
+                
+                return;
+            }
+            
             Instance.services.Add(typeof(T), service);
         }
 
         public static void Remove<T>() where T : class, IService
         {
+            if (Instance == null)
+            {
+                Debug.Log("ServiceManager: Instance is null");
+                
+                return;
+            }
+
             Instance.services.Remove(typeof(T));
         }
     }

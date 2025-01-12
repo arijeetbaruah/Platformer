@@ -9,18 +9,21 @@ namespace PG
         private List<GameObject> hits = new();
         [SerializeField] private GameObject owner;
 
+        public Action<Targetable> OnAttackHit = delegate { };
+        
         private void OnEnable()
         {
             hits.Clear();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
-       {
-           if (hits.Contains(other.gameObject) || other.gameObject == owner)
+        {
+            Targetable target = other.GetComponent<Targetable>();
+           if (hits.Contains(other.gameObject) || other.gameObject == owner || target == null)
                return;
            
            hits.Add(other.gameObject);
-           Debug.Log($"Hitbox entered: {other.gameObject.name}");
+           OnAttackHit.Invoke(target);
         }
     }
 }

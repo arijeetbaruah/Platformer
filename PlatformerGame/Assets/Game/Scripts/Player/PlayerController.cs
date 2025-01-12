@@ -3,6 +3,7 @@ using FMOD.Studio;
 using FMODUnity;
 using PG.Audio;
 using PG.Framework;
+using PG.Framework.Interaction;
 using PG.Input;
 using PG.Service;
 using Sirenix.OdinInspector;
@@ -22,6 +23,9 @@ namespace PG.Player
         [SerializeField] private float coyoteTime;
         [SerializeField] private float jumpBufferTime;
         
+        [Title("Attack HitBox")]
+        [SerializeField] private Hitbox attack1Hitbox;
+        
         [Title("Audio")]
         [SerializeField] private EventReference walkingEvent;
         [SerializeField] private EventReference jumpStartEvent;
@@ -32,6 +36,7 @@ namespace PG.Player
         
         private Rigidbody2D _rigidbody;
         private Vector2 _movement;
+        private Targetable _targetable;
 
         private float _coyoteTimeCounter;
         private float _jumpBufferCounter;
@@ -42,17 +47,19 @@ namespace PG.Player
 
         public bool IsGrounded => _isGrounded;
         public bool IsAttacking => _isAttacking;
+        public Vector2 Movement => _movement;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            TryGetComponent(out _targetable);
             TryGetComponent(out playerAnimationController);
             
             _walkingInstance = ServiceManager.Get<AudioService>().CreateInstance(walkingEvent);
             
             ServiceManager.Get<AudioService>().StopAndReleaseMusic();
         }
-
+        
         private void OnDestroy()
         {
             _walkingInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -61,6 +68,8 @@ namespace PG.Player
 
         private void Update()
         {
+            if (_targetable.IsDeath) return;
+            
             if (_jumpBufferCounter > 0)
             {
                 _jumpBufferCounter -= Time.deltaTime;
@@ -86,6 +95,8 @@ namespace PG.Player
 
         private void FixedUpdate()
         {
+            if (_targetable.IsDeath) return;
+            
             var oldState = _isGrounded;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, LayerMask.GetMask("Ground"));
             _isGrounded = hit.collider != null;
@@ -115,6 +126,8 @@ namespace PG.Player
 
         private void LateUpdate()
         {
+            if (_targetable.IsDeath) return;
+
             bool oldState = _isWalking;
             _isWalking = _rigidbody.linearVelocity.x != 0 && _rigidbody.linearVelocity.y == 0;
 
@@ -133,6 +146,8 @@ namespace PG.Player
 
         private void OnEnable()
         {
+            attack1Hitbox.OnAttackHit += OnAttack1Hit;
+            
             IS.Player.Enable();
 
             IS.Player.Move.performed += OnMoveStart;
@@ -141,10 +156,13 @@ namespace PG.Player
             IS.Player.Attack.performed += OnAttack;
 
             IS.Player.Jump.performed += OnJump;
+            IS.Player.Interact.performed += OnInteraction;
         }
 
         private void OnDisable()
         {
+            attack1Hitbox.OnAttackHit -= OnAttack1Hit;
+            
             if (ServiceManager.Instance != null)
             {
                 IS.Player.Move.performed -= OnMoveStart;
@@ -153,6 +171,7 @@ namespace PG.Player
                 IS.Player.Attack.performed -= OnAttack;
 
                 IS.Player.Jump.performed -= OnJump;
+                IS.Player.Interact.performed -= OnInteraction;
 
                 IS.Player.Disable();
             }
@@ -160,7 +179,7 @@ namespace PG.Player
 
         private void OnAttack(InputAction.CallbackContext obj)
         {
-            if (!IsGrounded || _isAttacking) return;
+            if (!IsGrounded || _isAttacking || _targetable.IsDeath) return;
 
             _rigidbody.linearVelocityX = 0;
             _movement.x = 0;
@@ -174,7 +193,7 @@ namespace PG.Player
 
         private void OnMoveStart(InputAction.CallbackContext obj)
         {
-            if (_isAttacking) return;
+            if (_isAttacking || _targetable.IsDeath) return;
 
             _movement.x = obj.ReadValue<Vector2>().x;
         }
@@ -186,14 +205,27 @@ namespace PG.Player
 
         private void OnJump(InputAction.CallbackContext obj)
         {
-            if (_isAttacking) return;
+            if (_isAttacking || _targetable.IsDeath) return;
 
             _jumpBufferCounter = jumpBufferTime;
+        }
+
+        private void OnInteraction(InputAction.CallbackContext obj)
+        {
+            foreach (IInteractable interactable in ServiceManager.Get<InteractionService>().Interactables)
+            {
+                interactable.Interact();
+            }
         }
 
         public void PlayAttack1Audio()
         {
             ServiceManager.Get<AudioService>().PlayOnce(attack1Event);
+        }
+
+        private void OnAttack1Hit(Targetable target)
+        {
+            target.OnHit(1);
         }
     }
 }

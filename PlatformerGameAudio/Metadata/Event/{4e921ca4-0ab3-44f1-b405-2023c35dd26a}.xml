@@ -5,7 +5,7 @@
 			<value>GameAmbiance</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>5</value>
 		</property>
 		<relationship name="folder">
 			<destination>{90870782-cd51-4c75-8df3-a61052efe82d}</destination>
@@ -113,7 +113,6 @@
 		<property name="start">
 			<value>1</value>
 		</property>
-		<property name="name" />
 		<relationship name="modulators">
 			<destination>{f3554e60-165a-4865-8bb5-6494c9ebe7ee}</destination>
 		</relationship>
