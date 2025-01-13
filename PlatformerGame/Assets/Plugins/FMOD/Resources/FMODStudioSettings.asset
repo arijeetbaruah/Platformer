@@ -691,7 +691,7 @@ MonoBehaviour:
   BankLoadType: 0
   AutomaticSampleLoading: 0
   EncryptionKey: 
-  ImportType: 0
+  ImportType: 1
   TargetAssetPath: FMODBanks
   TargetBankFolder: 
   EventLinkage: 0
@@ -707,10 +707,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Ambiance
-  - Music
-  - SFX
-  - UI
+  - Game
+  - MainMenu
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

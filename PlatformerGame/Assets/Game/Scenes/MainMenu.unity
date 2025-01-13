@@ -1011,6 +1011,28 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  mainMenuBanks:
+  - m_AssetGUID: 0cf097c545b82044585959931d2af74f
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: a2eeb39faf9c7a44eac6330ddc24d94c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 428373f5b9d6fe1439422558f6524a9f
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
+  gameBanks:
+  - m_AssetGUID: bc9470bb8ad830a4eaa85baa12ffe0cd
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
 --- !u!1 &1712072721
 GameObject:
   m_ObjectHideFlags: 0

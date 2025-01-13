@@ -61,5 +61,11 @@ namespace PG.Loading
                 yield return new WaitForEndOfFrame();
             }while(timer <= fadeOutTime);
         }
+
+        public void SetProgress(float loaderPercentComplete)
+        {
+            Debug.Log(loaderPercentComplete);
+            progressBar.value = loaderPercentComplete;
+        }
     }
 }

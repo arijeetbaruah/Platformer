@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.Serialization;
 
 namespace PG.UI.MainMenu
 {
@@ -37,9 +38,23 @@ namespace PG.UI.MainMenu
         
         [SerializeField] private SceneAssetReference additivieAsset;
         [SerializeField] private SceneAssetReference gameAsset;
+        [SerializeField] private List<AssetReference> mainMenuBanks;
+        
+        [SerializeField] private List<AssetReference> gameBanks;
         
         private IEnumerator Start()
         {
+            foreach (var bank in mainMenuBanks)
+            {
+                RuntimeManager.LoadBank(bank, true);
+            }
+            
+            // Keep yielding the co-routine until all the bank loading is done
+            // (for platforms with asynchronous bank loading)
+            yield return new WaitWhile(() => !RuntimeManager.HaveAllBanksLoaded || RuntimeManager.AnySampleDataLoading());
+            
+            Debug.Log("Loaded Fmod");
+            
             yield return Addressables.LoadSceneAsync(additivieAsset, LoadSceneMode.Additive);
 
             var audioService = new AudioService();
@@ -57,7 +72,24 @@ namespace PG.UI.MainMenu
         {
             yield return ServiceManager.Get<LoadingService>().FadeIn();
             
-            yield return Addressables.LoadSceneAsync(gameAsset, LoadSceneMode.Additive);
+            foreach (var bank in gameBanks)
+            {
+                RuntimeManager.LoadBank(bank, true);
+            }
+            
+            // Keep yielding the co-routine until all the bank loading is done
+            // (for platforms with asynchronous bank loading)
+            yield return new WaitWhile(() => !RuntimeManager.HaveAllBanksLoaded || RuntimeManager.AnySampleDataLoading());
+            
+            var loader = Addressables.LoadSceneAsync(gameAsset, LoadSceneMode.Additive);
+
+            while (!loader.IsDone)
+            {
+                ServiceManager.Get<LoadingService>().SetProgress(loader.PercentComplete);
+                
+                yield return null;
+            }
+            
             SceneManager.UnloadSceneAsync(0);
         }
 
