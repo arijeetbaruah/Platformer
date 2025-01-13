@@ -81,16 +81,35 @@ namespace PG.UI.MainMenu
             // (for platforms with asynchronous bank loading)
             yield return new WaitWhile(() => !RuntimeManager.HaveAllBanksLoaded || RuntimeManager.AnySampleDataLoading());
             
+            yield return LoadSceneAsyc();
+            
+            SceneManager.UnloadSceneAsync(0);
+        }
+
+        private IEnumerator LoadSceneAsyc()
+        {
+            LoadingYield.KeepWaiting = true;
+
             var loader = Addressables.LoadSceneAsync(gameAsset, LoadSceneMode.Additive);
 
+            float timer = 3;
             while (!loader.IsDone)
             {
                 ServiceManager.Get<LoadingService>().SetProgress(loader.PercentComplete);
                 
                 yield return null;
+                timer -= Time.deltaTime;
             }
             
-            SceneManager.UnloadSceneAsync(0);
+            SceneManager.SetActiveScene(loader.Result.Scene);
+            
+            while (timer >= 0)
+            {
+                yield return null;
+                timer -= Time.deltaTime;
+            }
+
+            LoadingYield.KeepWaiting = false;
         }
 
         public void QuitGame()

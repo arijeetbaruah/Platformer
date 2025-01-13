@@ -21,17 +21,6 @@ namespace PG.Loading
             panel.gameObject.SetActive(false);
         }
 
-        public IEnumerator LoadingProgression()
-        {
-            float timer = 0;
-            while (progressBar.value < 0.9f)
-            {
-                progressBar.value = timer;
-                timer += Time.deltaTime * 2;
-                yield return null;
-            }
-        }
-
         public IEnumerator FadeIn()
         {
             canvasGroup.alpha = 0;
@@ -64,7 +53,6 @@ namespace PG.Loading
 
         public void SetProgress(float loaderPercentComplete)
         {
-            Debug.Log(loaderPercentComplete);
             progressBar.value = loaderPercentComplete;
         }
     }

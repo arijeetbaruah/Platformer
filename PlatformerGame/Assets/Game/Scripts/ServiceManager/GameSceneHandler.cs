@@ -16,13 +16,14 @@ namespace PG
         private IEnumerator Start()
         {
             ServiceManager.Add(new InputService());
-            
+            yield return new LoadingYield();
+
             var player = playerPrefab.InstantiateAsync(spawnPoint.position, spawnPoint.rotation);
             
             yield return player;
             
             FindFirstObjectByType<CinemachineCamera>().Follow = player.Result.transform;
-            
+
             yield return ServiceManager.Get<LoadingService>().FadeOut();
         }
     }

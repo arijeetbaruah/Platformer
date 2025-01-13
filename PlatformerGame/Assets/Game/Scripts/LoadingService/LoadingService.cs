@@ -19,7 +19,6 @@ namespace PG.Loading
         }
 
         public IEnumerator FadeIn() => loadingSystem.FadeIn();
-        public IEnumerator LoadingProgression() => loadingSystem.LoadingProgression();
         public IEnumerator FadeOut() => loadingSystem.FadeOut();
 
         public void SetProgress(float loaderPercentComplete) => loadingSystem.SetProgress(loaderPercentComplete);
