@@ -13,5 +13,143 @@ MonoBehaviour:
   m_Name: vFolders Data
   m_EditorClassIdentifier: 
   folderDatasByGuid:
-    keys: []
-    values: []
+    keys:
+    - 00000000000000001000000000000000
+    - 718908c5adf8d544bb74845413f531f5
+    - 873a329e94e0e384ca4907b4a16f262b
+    - df7ba3133265b7c458c480b0f9288b3e
+    - 65c18d699fcadad459bc3e16558c2bd2
+    - 182d9c49af5a0be42aa3dea78069f7af
+    - 0220aab0833d04faeb927d84ca6cc40c
+    - 43993a027b2154c03af2a8d5df779c94
+    - 329086a42c50a4d3c98d6f8b91dfd3e7
+    - 9c7f70fa551ad4a409832d4a6f145b1c
+    - 8bd8fa44eeb414966bbba16fd4efb869
+    - bf7d7b146d3c25d4990a9b68ecb80c60
+    - 7518f3ef73e35034bb44657b2c74f34d
+    - dd8558c42c9e9d942bf2cdace6068666
+    - 2fef59ce003aaa94fa9da908707acab2
+    - 1b083af92856517408f7c94da7b427bb
+    - 6997ca56998fa184ca84bcc738308264
+    - f54d1bd14bd3ca042bd867b519fee8cc
+    - 6f231d09bb13ca6439b36763271d26e2
+    - 6343be7696ba0b449bd70a2bf99b8a17
+    - c6de47b0633b72d419d5180597652ebc
+    - 16495aa53b5710f4095a83b63f0124f3
+    - d2dd8858c3d808143b1ac79c571729fe
+    values:
+    - guid: 00000000000000001000000000000000
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 718908c5adf8d544bb74845413f531f5
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 873a329e94e0e384ca4907b4a16f262b
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: df7ba3133265b7c458c480b0f9288b3e
+      iColor: 1
+      autoIcon: 
+      customIcon: AudioMixerController Icon
+      autoIconDirty: 0
+    - guid: 65c18d699fcadad459bc3e16558c2bd2
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 182d9c49af5a0be42aa3dea78069f7af
+      iColor: 0
+      autoIcon: SceneAsset Icon
+      customIcon: 
+      autoIconDirty: 1
+    - guid: 0220aab0833d04faeb927d84ca6cc40c
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 43993a027b2154c03af2a8d5df779c94
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 1
+    - guid: 329086a42c50a4d3c98d6f8b91dfd3e7
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 9c7f70fa551ad4a409832d4a6f145b1c
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 8bd8fa44eeb414966bbba16fd4efb869
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: bf7d7b146d3c25d4990a9b68ecb80c60
+      iColor: 3
+      autoIcon: 
+      customIcon: ScriptableObject Icon
+      autoIconDirty: 0
+    - guid: 7518f3ef73e35034bb44657b2c74f34d
+      iColor: 7
+      autoIcon: 
+      customIcon: ComputeShader Icon
+      autoIconDirty: 0
+    - guid: dd8558c42c9e9d942bf2cdace6068666
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 2fef59ce003aaa94fa9da908707acab2
+      iColor: 5
+      autoIcon: 
+      customIcon: AnimatorController Icon
+      autoIconDirty: 0
+    - guid: 1b083af92856517408f7c94da7b427bb
+      iColor: 8
+      autoIcon: 
+      customIcon: LightingDataAsset Icon
+      autoIconDirty: 0
+    - guid: 6997ca56998fa184ca84bcc738308264
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: f54d1bd14bd3ca042bd867b519fee8cc
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 6f231d09bb13ca6439b36763271d26e2
+      iColor: 10
+      autoIcon: cs Script Icon
+      customIcon: Texture Icon
+      autoIconDirty: 0
+    - guid: 6343be7696ba0b449bd70a2bf99b8a17
+      iColor: 0
+      autoIcon: Prefab Icon
+      customIcon: 
+      autoIconDirty: 0
+    - guid: c6de47b0633b72d419d5180597652ebc
+      iColor: 2
+      autoIcon: 
+      customIcon: Cubemap Icon
+      autoIconDirty: 0
+    - guid: 16495aa53b5710f4095a83b63f0124f3
+      iColor: 0
+      autoIcon: ScriptableObject Icon
+      customIcon: 
+      autoIconDirty: 0
+    - guid: d2dd8858c3d808143b1ac79c571729fe
+      iColor: 9
+      autoIcon: 
+      customIcon: Mesh Icon
+      autoIconDirty: 0

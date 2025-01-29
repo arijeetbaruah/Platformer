@@ -1,0 +1,16 @@
+{
+    "name": "BP.Config",
+    "rootNamespace": "BP.Config",
+    "references": [
+        "GUID:cae40a4613c88a44ea3ce483bf66782b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

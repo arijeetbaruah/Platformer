@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_GUID: 63bb3b709192afe4e8f32fbff62c8e8c
+  m_GUID: baaea1149e3fb524f8d3d79f1d198bba
   m_SerializeEntries:
-  - m_GUID: 901c4ff65f5d42e4e8bf4a1b37dc7f75
-    m_Address: Assets/Game/Prefabs/Player.prefab
+  - m_GUID: 7a8cd4a7150adf1428a664eef57b0e75
+    m_Address: Assets/Games/Configs/ConfigRegistry.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 472ffbfb59ef5fe4e9ea131ddefc4f37, type: 2}
+  m_Settings: {fileID: 11400000, guid: d752086f204cd084ea2204a0473dd962, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d1e6addd3979c9e47936d3282aaaa247, type: 2}
-    - {fileID: 11400000, guid: 4ff33bbf7920e7b47afc8de1d16bc8cd, type: 2}
+    - {fileID: 11400000, guid: 8a25653ab5ac8a24ab368e7279bc0a28, type: 2}
+    - {fileID: 11400000, guid: 77c5675763a1e0d43a1fa7109aaf8936, type: 2}

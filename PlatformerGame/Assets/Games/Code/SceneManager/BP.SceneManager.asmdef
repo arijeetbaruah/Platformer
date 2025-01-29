@@ -1,0 +1,20 @@
+{
+    "name": "BP.SceneManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cae40a4613c88a44ea3ce483bf66782b",
+        "GUID:cf6a41e459e956f49b61f101d02c4558",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:84651a3751eca9349aac36a66bba901b",
+        "GUID:a1fdd33e57ecbf948949df782e000706"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
